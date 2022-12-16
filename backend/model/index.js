@@ -6,8 +6,8 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const db = {};
 
-const sequelize = new Sequelize('blog', 'root','', {
-    host:'localhost',
+const sequelize = new Sequelize('b64r9eznrkkkrftvsxdu', 'ufvagmxodbqos7ae', 'JL1KjtauuP6LIYfB4Szf', {
+    host:'b64r9eznrkkkrftvsxdu-mysql.services.clever-cloud.com',
     dialect:"mysql",
      pool: {
       max: 5,
