@@ -1,9 +1,11 @@
+import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
 import { Container,Card } from 'react-bootstrap';
 
 export default function Posts(){
     const [posts,setPosts] = useState([]);
+    const navigate = useNavigate()
 
     const fetchPosts = async ()=>{
         try {
@@ -19,6 +21,21 @@ export default function Posts(){
             console.log(error.message)
         }
     }
+const deletePost = async(id) =>{
+    console.log(id)
+    try{
+        const {data:response} = await axios.post(`http://localhost:7000/delete/${id}`,{})     
+        
+        if(!response){
+            alert('something went wrong creating post')
+            return;
+        }
+        alert('post saved!');
+        navigate('/')
+    }catch(err){
+        alert(err.message)
+    }
+}
 
     useEffect(()=>{
         fetchPosts();
@@ -38,6 +55,10 @@ export default function Posts(){
                             <Card.Body className='d-flex flex-column gap-3'>
                                 <p className='mb-3 px-2'>{post.text}</p>
                                 <span className='ms-auto'>By : {post.author}</span>
+
+                                <div className='mt-4 text-right'><button className='btn btn-danger' onClick={()=>deletePost(post.id)}>DELETE</button>
+                                
+                                </div>
                             </Card.Body>
                         </Card>
                         )

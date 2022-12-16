@@ -15,7 +15,7 @@ const PORT = 7000;
 app.use(cors({origin:'*'}))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
- 
+
 app.use('/',router);
 app.use('/',(err,req,res,next)=>{
     if(err){
